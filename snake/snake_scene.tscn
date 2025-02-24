@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://gqgciu23varj"]
+
+[ext_resource type="Script" path="res://head.gd" id="1_duyj6"]
+[ext_resource type="PackedScene" uid="uid://cc2o1m0kxnlg4" path="res://head.tscn" id="2_rc3k2"]
+[ext_resource type="PackedScene" uid="uid://discsbjhp1c81" path="res://body.tscn" id="3_idjah"]
+[ext_resource type="PackedScene" uid="uid://b8ui7f1tdh4wc" path="res://tail.tscn" id="4_tsa54"]
+
+[node name="SnakeScene" type="Node2D"]
+script = ExtResource("1_duyj6")
+body_scene = ExtResource("3_idjah")
+
+[node name="Head" parent="." instance=ExtResource("2_rc3k2")]
+script = null
+
+[node name="Body" parent="Head" instance=ExtResource("3_idjah")]
+
+[node name="Tail" parent="Head" instance=ExtResource("4_tsa54")]
+scale = Vector2(14.0625, 14.0625)

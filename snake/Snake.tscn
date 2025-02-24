@@ -1,0 +1,86 @@
+[gd_scene load_steps=12 format=3 uid="uid://bmebtdlm7bmk8"]
+
+[ext_resource type="Texture2D" uid="uid://c2g4eb5qrb2lp" path="res://Assets/Background.png" id="1_ocjs2"]
+[ext_resource type="Script" path="res://snake.gd" id="1_pjqkm"]
+[ext_resource type="PackedScene" uid="uid://cc2o1m0kxnlg4" path="res://head.tscn" id="3_ek6t3"]
+[ext_resource type="PackedScene" uid="uid://discsbjhp1c81" path="res://body.tscn" id="4_c7uws"]
+[ext_resource type="PackedScene" uid="uid://b8ui7f1tdh4wc" path="res://tail.tscn" id="5_wm4ev"]
+[ext_resource type="PackedScene" uid="uid://djr0hw5mywx7m" path="res://apple.tscn" id="6_l78j3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_srgn5"]
+font_size = 75
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jmgwo"]
+size = Vector2(960, 39)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3aro7"]
+size = Vector2(970, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ddue0"]
+size = Vector2(86.25, 911)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l50cr"]
+size = Vector2(50, 984)
+
+[node name="SnakeGame" type="Node2D"]
+script = ExtResource("1_pjqkm")
+apple_scene = ExtResource("6_l78j3")
+body_scene = ExtResource("4_c7uws")
+tail_scene = ExtResource("5_wm4ev")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(540, 540)
+scale = Vector2(60, 60)
+texture = ExtResource("1_ocjs2")
+metadata/_edit_lock_ = true
+
+[node name="Head" parent="." groups=["head", "snake"] instance=ExtResource("3_ek6t3")]
+position = Vector2(360, 480)
+rotation = -6.28319
+
+[node name="Body" parent="." instance=ExtResource("4_c7uws")]
+position = Vector2(300, 480)
+
+[node name="Tail" parent="." instance=ExtResource("5_wm4ev")]
+position = Vector2(240, 480)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.15
+autostart = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 1260.0
+offset_top = 120.0
+offset_right = 1740.0
+offset_bottom = 240.0
+text = "Score: "
+label_settings = SubResource("LabelSettings_srgn5")
+
+[node name="Wall" type="Area2D" parent="."]
+position = Vector2(300, 60)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+position = Vector2(239, 5)
+shape = SubResource("RectangleShape2D_jmgwo")
+
+[node name="Wall2" type="Area2D" parent="."]
+position = Vector2(526, 1022)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
+position = Vector2(20, -12)
+shape = SubResource("RectangleShape2D_3aro7")
+
+[node name="Wall3" type="Area2D" parent="."]
+position = Vector2(46, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall3"]
+position = Vector2(997, 531)
+shape = SubResource("RectangleShape2D_ddue0")
+
+[node name="Wall4" type="Area2D" parent="."]
+position = Vector2(-1, 31)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall4"]
+position = Vector2(61, 548)
+shape = SubResource("RectangleShape2D_l50cr")
